@@ -86,5 +86,11 @@ body {
     align-items: center;
     border: 1px solid hsl(200, 100%, 10%);
     border-radius: 0.25rem;
-    padding: 0.25rem;
+    padding: 0.25rem; 
+}
+
+.day-card-day {
+    font-size: 0.75rem;
+    color: hsl(200, 100%, 20%);
+    margin-top: 0.5rem;
 }
