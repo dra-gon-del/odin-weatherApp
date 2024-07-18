@@ -8,6 +8,41 @@ export function getWeather(lat, lon, timezone) {
             latitude: lat,
             longitude: lon,
             timezone ,
-        },
+            },
+        }
+    )
+    .then(({ data }) => {
+        return {
+            current: parseCurrentWeather(data), 
+            // daily: parseDailyWeather(data),
+            // hourly: parseHourlyWeather(data)
+        }
     })
+}
+
+function parseCurrentWeather({ current , daily }) {
+    const { 
+        temperature_2m: currentTemp, 
+        windspeed: windSpeed, 
+        weathercode: iconCode 
+    } = current
+
+    const {
+        temperature_2m_max: [maxTemp],
+        temperature_2m_min: [minTemp],
+        apparent_temperature_max: [maxFeelsLike],
+        apparent_temperature_min: [minFeelsLike],
+        precipitation_sum: [precip],
+    } = daily
+
+    return {
+        currentTemp: Math.round(currentTemp),
+        highTemp: Math.round(maxTemp),
+        lowTemp: Math.round(minTemp),
+        highFeelsLike: Math.round(maxFeelsLike),
+        lowFeelsLike: Math.round(minFeelsLike),
+        windSpeed: Math.round(windSpeed),
+        precip: Math.round(precip * 100) / 100,
+        iconCode,
+    }
 }
