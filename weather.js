@@ -12,9 +12,10 @@ export function getWeather(lat, lon, timezone) {
         }
     )
     .then(({ data }) => {
+        //return data
         return {
             current: parseCurrentWeather(data), 
-            // daily: parseDailyWeather(data),
+            daily: parseDailyWeather(data),
             // hourly: parseHourlyWeather(data)
         }
     })
@@ -45,4 +46,14 @@ function parseCurrentWeather({ current , daily }) {
         precip: Math.round(precip * 100) / 100,
         iconCode,
     }
+}
+
+function parseDailyWeather({ daily }) {
+    return daily.time.map((time, index) => {
+        return {
+            timestamp: time * 1000,
+            iconCode: daily.weather_code[index],
+            maxTemp: Math.round(daily.temperature_2m_max[index])
+        }
+    })
 }
