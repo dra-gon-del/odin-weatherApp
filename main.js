@@ -34,3 +34,6 @@ function renderCurrentWeather(current) {
     setValue("current-wind", current.windSpeed)
     setValue("current-precip", current.precip)
     }
+
+    const dailySelection = document.querySelector("[data-day-selection")
+    function renderDailyWeather(daily) {}
