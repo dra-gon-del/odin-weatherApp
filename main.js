@@ -59,7 +59,7 @@ function renderCurrentWeather(current) {
         hourlySection.innerHTML = ""
         hourly.forEach(hour => {
             const element = hourRowTemplate.content.cloneNode(true)
-            setValue("temp", hour.maxTemp, { parent: element })
+            setValue("temp", hour.temp, { parent: element })
             setValue("fl-temp", hour.feelsLike, { parent: element })
             setValue("wind", hour.windSpeed, { parent: element })
             setValue("precip", hour.precip, { parent: element })
