@@ -1,5 +1,6 @@
 import "./style.css";
 import { getWeather } from "./weather";
+import { ICON_MAP } from "./iconmap";
 
 getWeather(10, 10, Intl.DateTimeFormat().resolvedOptions().timeZone).then(renderWeather).
 catch(e => {
@@ -19,7 +20,7 @@ function setValue(selector, value, { parent = document } = {}) {
 }
 
 function getIconUrl(iconCode) {
-    return `icons/${iconCode}.svg`
+    return `icons/${ICON_MAP.get(iconCode)}.svg`
 }
 
 const currentIcon = document.querySelector("[data-current-icon]")
